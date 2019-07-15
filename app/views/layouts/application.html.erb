@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>湧き水検索</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <audio id="bgm" src="https://vsq.co.jp/wp-content/uploads/2018/06/VSQSE_0650_river3.mp3" type="audio/mp3" autoplay loop >
+    </audio> 
+    <i class="fa fa-volume-up fa-lg my-green" onclick="audioPlay()"></i>
+    <i class="fa fa-volume-off fa-lg my-green" onclick="audioPause()"></i>
+
+    <script>
+     //再生開始
+     function audioPlay(){
+       document.getElementById("bgm").play();
+     }
+   
+     //再生を停止
+     function audioPause(){
+       document.getElementById("bgm").pause();
+     }
+    </script>
+
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src="https://cdn.zekkei-japan.jp/images/spots/d15b07ee553881dc8d74bdd96ab20267.jpg">
+        </li>
+        <li>
+          <img src="https://www.env.go.jp/water/meisui/H27senkyo/view/images/view_e19.jpg">
+        </li>
+        <li>
+          <img src="https://www.env.go.jp/water/meisui/H27senkyo/view/images/view_e20.jpg">
+        </li>
+      </ul>
+    </div>
+    <div class="container">
+      <%= form_tag('/waters/search', method: :get) do %>
+        <div class="row">
+          <div class="input-field col s3 offset-s4 search">
+            <textarea id="textarea1" class="materialize-textarea" name="keyword"></textarea>
+            <label for="textarea1">住所入力（都道府県含め）</label>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">検索
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

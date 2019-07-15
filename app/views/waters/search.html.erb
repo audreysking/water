@@ -1,0 +1,27 @@
+<div class="container">
+  <%if @info.present? %>
+    <div class="green-text text-accent-4"><%= @results.count %>件みつかりました</div>
+    <% @info.each do |data| %>
+      <div class="card horizontal light-blue lighten-5">
+        <div class="card-stacked">
+          <div class="card-content">
+            <h5 class="green-text text-accent-4"><%= data.name %><%= data.furigana %></h5>
+            <p>住所：<%= data.address %></p>
+            <p>アクセス：<%= data.access %></p>
+            <p>説明：<%= data.overview %></p>
+          </div>
+          <div class="card-action">
+            <%= link_to '場所確認', data.mapurl %>
+          </div>
+        </div>
+        <div class="card-image">
+          <%= image_tag(data.imgurl) %>
+        </div>
+      </div>
+    <% end %>
+    <div class="center-align"><%= paginate(@info) %></div>
+  <% else %>
+    <h5 class="center-align green-text text-accent-4">該当データが見つかりませんでしたT_T</h5>
+    <h5 class="center-align green-text text-accent-4">住所情報を正しく入力して再検索してね^_^</h5>
+  <% end %>
+</div>

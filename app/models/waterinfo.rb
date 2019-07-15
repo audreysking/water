@@ -1,0 +1,2 @@
+class Waterinfo < ApplicationRecord
+end
